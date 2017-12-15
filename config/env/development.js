@@ -20,7 +20,7 @@ module.exports = {
     sequelize_mysql: {
       database: 'rdocsv2',
       user: 'root',
-      password: '',
+      password: 's2pitken',
       options: {
         dialect: 'mysql',
         host   : '127.0.0.1',
