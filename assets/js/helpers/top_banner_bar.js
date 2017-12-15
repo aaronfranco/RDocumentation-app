@@ -101,10 +101,6 @@
 
            }, _l_obj.timing);
 
-      }else{
-           // for demo purposes so the cookie doesn't block the functionality during testing
-           // TODO: remove for production
-           $.removeCookie("top_banner_"+_l_p)
       }
  }
 })($jq);
