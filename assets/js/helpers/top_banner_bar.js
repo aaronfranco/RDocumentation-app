@@ -44,9 +44,11 @@
            // Open the modal after the timing seconds
            setTimeout(function(){
 
-                // TODO: set the cookie for 1 week
+                // create timestamp for time it opened
+                var opened = new Date().getTime();
+
                 // use pathname to allow multiple pop ups and tracking
-                // $.cookie("top_banner_"+_l_p, 'true', {expires:7})
+                $.cookie("top_banner_"+_l_p, 'true', {expires:7})
 
                 // track the time it took to open the modal
                 ga('send', 'timing', 'variable-timing-growth-hellobar', 'time-to-open-ms', _l_obj.timing)
@@ -66,12 +68,16 @@
                 // add click events to the bar and close button
                 $('.hellobar_link').bind('click', function(e){
 
+                     // time to click
+                     var clicked = new Date().getTime();
+
                      // track the click event
                      ga('send', 'event', _l_p, 'click', 'Followed Courses Campaign');
 
                      // TODO: get the time it took to click
-                     // ga('send', 'timing', 'variable-timing-growth-hellobar', 'time-to-click-ms', ???);
+                     ga('send', 'timing', 'variable-timing-growth-hellobar', 'time-to-click-ms', (clicked-opened));
 
+                     // redirect to link
                      window.location = _l_link;
 
                 })
@@ -79,7 +85,16 @@
                 // add click even to the close button
                 $('.hellobar_close').bind('click', function(e){
 
-                     // TODO: add tracking & timing code here
+                     // track time to close
+                     var closed = new Date().getTime();
+
+                     // track the close click
+                     ga('send', 'event', _l_p, 'close', 'Closed Courses Campaign');
+
+                     // track the time it took to close
+                     ga('send', 'timing', 'variable-timing-growth-hellobar', 'time-to-close-ms', (closed-opened));
+
+                     // remove the hellobar
                      $('.hellobar-test').remove();
 
                 })
